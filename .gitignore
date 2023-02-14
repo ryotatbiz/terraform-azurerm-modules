@@ -1,1 +1,4 @@
-test_deployment/
+test_deployment/.terraform/
+test_deployment/.terraform.lock.hcl
+test_deployment/terraform.tfstate
+test_deployment/terraform.tfstate.backup
