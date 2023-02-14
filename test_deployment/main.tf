@@ -7,14 +7,17 @@ module "resource_group" {
   tags     = var.tags
 }
 
-# Create Virtual Network
+# Create Virtual Network & Subnet
 module "virtual_network" {
   source = "../virtual_network"
   depends_on = [
     module.resource_group
   ]
-  for_each        = try(var.virtual_networks, {})
-  virtual_network = each.value.virtual_network
-  location        = var.location
-  tags            = var.tags
+  for_each            = try(var.virtual_networks, {})
+  name                = each.value.name
+  resource_group_name = each.value.resource_group_name
+  address_space       = each.value.address_space
+  subnets             = each.value.subnets
+  location            = var.location
+  tags                = var.tags
 }
